@@ -3,7 +3,7 @@
 
 // Generates an external event. Is called once per external event to start
 // the state machine executing
-void _FSM_ExternalEvent(FSM_StateMachine* self, const FSM_StateMachineConst* self_const, uint8_t newState, void* pEventData)
+void _FSM_ExternalEvent(FSM_StateMachine* self, const FSM_StateMachineConst* self_const, unsigned int newState, void* pEventData)
 {
     if (newState == EVENT_IGNORED)
     {
@@ -26,7 +26,7 @@ void _FSM_ExternalEvent(FSM_StateMachine* self, const FSM_StateMachineConst* sel
 }
 
 // Generates internal event. Called from within a state function to transition to a new state
-void _FSM_InternalEvent(FSM_StateMachine* self, uint8_t newState, void* pEventData)
+void _FSM_InternalEvent(FSM_StateMachine* self, unsigned int newState, void* pEventData)
 {
     void* pDataTemp = ((void *)0);
 
@@ -85,7 +85,7 @@ void _FSM_StateEngine(FSM_StateMachine* self, const FSM_StateMachineConst* self_
 // The state engine executes the extended state machine states
 void _FSM_StateEngineEx(FSM_StateMachine* self, const FSM_StateMachineConst* self_const)
 {
-    bool guardResult = True;
+    unsigned int guardResult = True;
     void* pDataTemp = ((void *)0);
 
     if (self && self_const)
@@ -162,5 +162,4 @@ void _FSM_StateEngineEx(FSM_StateMachine* self, const FSM_StateMachineConst* sel
         }        
     }
 }
-void _FSM_StateEngineEx(FSM_StateMachine* self, const FSM_StateMachineConst* self_const);
 

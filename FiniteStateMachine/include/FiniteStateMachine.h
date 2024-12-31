@@ -10,7 +10,7 @@ typedef void NoEventData;
 typedef struct 
 {
     const char* name;
-    const uint8_t maxStates;
+    const unsigned int maxStates;
     const struct FSM_StatesStruct* state_Map;
     const struct FSM_StateStructEx* stateMapEx;
 }FSM_StateMachineConst;
@@ -20,15 +20,15 @@ typedef struct
 {
     const char* name;
     void* pInstance;
-    uint8_t newState;
-    uint8_t currentState;
-    uint8_t eventGEnerated; // bool
+    unsigned int newState;
+    unsigned int currentState;
+    unsigned int eventGEnerated; // bool
     void* pEventData;
 }FSM_StateMachine;
 
 // Generic state function signatures
 typedef void (*FSM_StateFunc)(FSM_StateMachine* self, void* pEventData);
-typedef uint8_t (*FSM_GuardFunc)(FSM_StateMachine* self, void* pEventData);
+typedef unsigned int (*FSM_GuardFunc)(FSM_StateMachine* self, void* pEventData);
 typedef void (*FSM_EntryFunc)(FSM_StateMachine* self, void* pEventData);
 typedef void (*FSM_ExitFunc)(FSM_StateMachine* self);
 
@@ -54,8 +54,8 @@ typedef struct FSM_StateStructEx
 #define FSM_GetInstance(_instance_) (_instance_*)(self->pInstance);
 
 // Private functions
-void _FSM_ExternalEvent(FSM_StateMachine* self, const FSM_StateMachineConst* self_const, uint8_t newState, void* pEventData);
-void _FSM_InternalEvent(FSM_StateMachine* self, uint8_t newState, void* pEventData);
+void _FSM_ExternalEvent(FSM_StateMachine* self, const FSM_StateMachineConst* self_const, unsigned int newState, void* pEventData);
+void _FSM_InternalEvent(FSM_StateMachine* self, unsigned int newState, void* pEventData);
 void _FSM_StateEngine(FSM_StateMachine* self, const FSM_StateMachineConst* self_const);
 void _FSM_StateEngineEx(FSM_StateMachine* self, const FSM_StateMachineConst* self_const);
 
@@ -73,10 +73,10 @@ void _FSM_StateEngineEx(FSM_StateMachine* self, const FSM_StateMachineConst* sel
     _getData_ _getFunc_(FSM_StateMachine* self)
 
 #define GUARD_DECLARE(_guardFunc_, _eventData_) \
-    static BOOL GD_##_guardFunc_(FSM_StateMachine* self, _eventData_* pEventData);
+    static unsigned int GD_##_guardFunc_(FSM_StateMachine* self, _eventData_* pEventData);
 
 #define GUARD_DEFINE(_guardFunc_, _eventData_) \
-    static BOOL GD_##_guardFunc_(FSM_StateMachine* self, _eventData_* pEventData)
+    static unsigned int GD_##_guardFunc_(FSM_StateMachine* self, _eventData_* pEventData)
 
 #define ENTRY_DECLARE(_entryFunc_, _eventData_) \
     static void EN_##_entryFunc_(FSM_StateMachine* self, _eventData_* pEventData);
@@ -118,7 +118,7 @@ void _FSM_StateEngineEx(FSM_StateMachine* self, const FSM_StateMachineConst* sel
         NULL, _smName_##StateMap };
 
 #define BEGIN_TRANSITION_MAP \
-    static const uint8_t TRANSITIONS[] = { \
+    static const unsigned int TRANSITIONS[] = { \
 
 #define TRANSITION_MAP_ENTRY(_entry_) \
     _entry_,

@@ -7,13 +7,13 @@
 // Motor object structure
 typedef struct
 {
-    uint8_t currentSpeed;
+    unsigned int currentSpeed;
 } Motor;
 
 // Event data structure
 typedef struct
 {
-    uint8_t speed;
+    unsigned int speed;
 } MotorData;
 
 // State machine event functions
@@ -21,6 +21,6 @@ EVENT_DECLARE(MTR_SetSpeed, MotorData)
 EVENT_DECLARE(MTR_Halt, NoEventData)
 
 // Public accessor
-GET_DECLARE(MTR_GetSpeed, uint8_t);
+GET_DECLARE(MTR_GetSpeed, unsigned int);
 
 #endif // _MOTOR_H

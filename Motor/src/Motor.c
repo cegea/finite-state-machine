@@ -100,7 +100,7 @@ STATE_DEFINE(ChangeSpeed, MotorData)
 }
 
 // Get current speed
-GET_DEFINE(MTR_GetSpeed, uint8_t)
+GET_DEFINE(MTR_GetSpeed, unsigned int)
 {
     Motor* pInstance = FSM_GetInstance(Motor);
     return pInstance->currentSpeed;
