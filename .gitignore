@@ -1,6 +1,12 @@
 # Prerequisites
 *.d
 
+# Build folder
+build
+
+# VS Code Folder
+.vscode
+
 # Object files
 *.o
 *.ko
