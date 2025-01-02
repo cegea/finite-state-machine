@@ -1,7 +1,13 @@
 #ifndef _STATE_MACHINE_H
 #define _STATE_MACHINE_H
 
-#include <DataTypes.h>
+#ifndef False
+#define False               0
+#endif
+
+#ifndef True
+#define True                1
+#endif
 
 enum { EVENT_IGNORED = 0xFE, CANNOT_HAPPEN = 0xFF };
 typedef void NoEventData;
